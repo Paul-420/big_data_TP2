@@ -3,7 +3,7 @@ version: '3.7'
 services:
   backend:
     build: ./simple-api
-    container_name: my-api
+    container_name: postgres
     networks:
       - my-network
     depends_on:
