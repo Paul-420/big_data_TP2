@@ -39,3 +39,32 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/simple-api
           mvn clean install
+  build-and-push-docker-image:
+    needs: test-backend 
+    runs-on: ubuntu-22.04
+
+    steps:
+      # Cloner le code
+      - name: Checkout code
+        uses: actions/checkout@v2.5.0
+
+      # Construire l'image Docker pour le backend
+      - name: Build image and push backend
+        uses: docker/build-push-action@v3
+        with:
+          context: ./simple-api  # Chemin vers le Dockerfile pour le backend
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-simple-api:latest
+
+      # Construire l'image Docker pour la base de données (database)
+      - name: Build image and push database
+        uses: docker/build-push-action@v3
+        with:
+          context: ./database  # Chemin vers le Dockerfile pour la base de données
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-database:latest
+
+      # Construire l'image Docker pour le serveur HTTP (httpd)
+      - name: Build image and push httpd
+        uses: docker/build-push-action@v3
+        with:
+          context: ./http-server  # Chemin vers le Dockerfile pour le serveur HTTP
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-httpd:latest
