@@ -23,4 +23,6 @@ jobs:
 
       # Build and test the app using Maven
       - name: Build and test with Maven
-        run: mvn clean install
+        run: |
+          cd simple_api/pom.xml
+          mvn clean install
