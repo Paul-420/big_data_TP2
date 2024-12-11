@@ -39,7 +39,7 @@ jobs:
         run: #|
           #cd $GITHUB_WORKSPACE/simple-api
           #mvn clean install
-          mvn -B verify sonar:sonar -Dsonar.projectKey=paul-420 -Dsonar.organization=big_data_TP2- -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file $GITHUB_WORKSPACE/simple-api/pom.xml
+          mvn -B verify sonar:sonar -Dsonar.projectKey=Paul-420_big_data_TP2 -Dsonar.organization=paul-420- -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file $GITHUB_WORKSPACE/simple-api/pom.xml
 
   build-and-push-docker-image:
     needs: test-backend 
