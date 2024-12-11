@@ -30,8 +30,8 @@ jobs:
 
 
       
-      - name: Verify presence of pom.xml
-        run: ls $GITHUB_WORKSPACE/simple_api/pom.xml
+      #- name: Verify presence of pom.xml
+      #  run: ls $GITHUB_WORKSPACE/simple_api/pom.xml
 
 
       # Build and test the app using Maven
