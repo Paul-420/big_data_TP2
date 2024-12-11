@@ -20,6 +20,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+
+      - name: Debug - List files and directories
+        run: ls -R
+
       
       - name: Verify presence of pom.xml
         run: ls ./simple_api/pom.xml
