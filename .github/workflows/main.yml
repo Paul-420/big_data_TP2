@@ -23,6 +23,11 @@ jobs:
 
       - name: Debug - List files and directories
         run: ls -R
+      
+      - name: Check if simple-api exists
+        run: |
+          ls -l $GITHUB_WORKSPACE/simple-api
+
 
       
       - name: Verify presence of pom.xml
@@ -32,5 +37,5 @@ jobs:
       # Build and test the app using Maven
       - name: Build and test with Maven
         run: |
-          cd simple_api
+          cd $GITHUB_WORKSPACE/simple_api
           mvn clean install
