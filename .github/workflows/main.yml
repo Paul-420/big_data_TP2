@@ -36,9 +36,11 @@ jobs:
 
       # Build and test the app using Maven
       - name: Build and test with Maven
-        run: |
-          cd $GITHUB_WORKSPACE/simple-api
-          mvn clean install
+        run: #|
+          #cd $GITHUB_WORKSPACE/simple-api
+          #mvn clean install
+          mvn -B verify sonar:sonar -Dsonar.projectKey=devops-2024 -Dsonar.organization=devops-school -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file $GITHUB_WORKSPACE/simple-api/pom.xml
+
   build-and-push-docker-image:
     needs: test-backend 
     runs-on: ubuntu-22.04
