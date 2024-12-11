@@ -47,6 +47,9 @@ jobs:
       # Cloner le code
       - name: Checkout code
         uses: actions/checkout@v2.5.0
+      
+      - name: Login to DockerHub
+          run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       # Construire l'image Docker pour le backend
       - name: Build image and push backend
@@ -54,6 +57,7 @@ jobs:
         with:
           context: ./simple-api  # Chemin vers le Dockerfile pour le backend
           tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-simple-api:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
 
       # Construire l'image Docker pour la base de données (database)
       - name: Build image and push database
@@ -61,6 +65,7 @@ jobs:
         with:
           context: ./database  # Chemin vers le Dockerfile pour la base de données
           tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-database:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
 
       # Construire l'image Docker pour le serveur HTTP (httpd)
       - name: Build image and push httpd
@@ -68,3 +73,7 @@ jobs:
         with:
           context: ./http-server  # Chemin vers le Dockerfile pour le serveur HTTP
           tags: ${{ secrets.DOCKER_USERNAME }}/tp-devops-httpd:latest
+          push: ${{ github.ref == 'refs/heads/main' }}
+      
+      
+
