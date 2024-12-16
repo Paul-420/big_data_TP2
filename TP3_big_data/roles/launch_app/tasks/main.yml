@@ -1,0 +1,13 @@
+# roles/launch_app/tasks/main.yml
+
+- name: Launch Application container
+  docker_container:
+    name: app
+    image: your_app_image
+    state: started
+    restart_policy: always
+    networks:
+      - my_network
+    ports:
+      - "80:80"
+

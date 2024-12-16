@@ -1,0 +1,7 @@
+all:
+  hosts:
+    admin@paul.jouvanceau.takima.cloud:
+      ansible_ssh_private_key_file: /home/polopopol/TP3_big_data/id_rsa
+  vars:
+    ansible_ssh_user: admin
+

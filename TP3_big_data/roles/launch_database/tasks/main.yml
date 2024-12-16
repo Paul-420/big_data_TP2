@@ -1,0 +1,15 @@
+# roles/launch_database/tasks/main.yml
+
+- name: Launch Database container
+  docker_container:
+    name: db
+    image: postgres:latest
+    state: started
+    restart_policy: always
+    networks:
+      - my_network
+    env:
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - "5432:5432"
+
